@@ -1,0 +1,35 @@
+{
+  "name": "flyp-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.1.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.2",
+    "nodemon": "^2.0.16",
+    "puppeteer": "^13.7.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
+    "reactstrap": "^9.0.2",
+    "redux": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohamedEllouze/flyp-automation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohamedEllouze/flyp-automation/issues"
+  },
+  "homepage": "https://github.com/MohamedEllouze/flyp-automation#readme"
+}
