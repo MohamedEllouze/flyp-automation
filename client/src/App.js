@@ -1,11 +1,18 @@
-import logo from "./logo.svg";
-import "./App.css";
+import "./styles/style.scss";
 import SignUp from "./pages/sign-up";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserInfo from "./pages/user-info";
+import Navbar from "./components/navbar";
+
 function App() {
   return (
-    <div className="App">
-      <SignUp />
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<SignUp />}></Route>
+        <Route path="/user" element={<UserInfo />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

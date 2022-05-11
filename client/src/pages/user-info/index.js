@@ -1,22 +1,13 @@
 import { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import axios from "axios";
-import { useEffect } from "react";
+import { Input, Button } from "antd";
 
-function SignUp() {
-    useEffect(() => {
-        const res = await axios.get(
-            "http://localhost:4000/contact" 
-          );
-
-      }, []); 
-       const [userData, setUserData] = useState({});
-  const { firstName, lastName, email, username, password } = userData;
+function UserInfo() {
+  const [userData, setUserData] = useState({});
 
   const onChange = (e) => {
-    // let el = e.target.type == "checkbox" ? e.target.checked : e.target.value;
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(" on change", formData);
+    setUserData({ userLink: e.target.value });
+    console.log(userData);
   };
   const config = {
     headers: {
@@ -24,16 +15,38 @@ function SignUp() {
     },
   };
   const onSubmit = async (e) => {
-    e.preventDefault();
-    console.log("on submit", formData);
+    e.preventDefault(e);
+    console.log("on submit", userData);
     const res = await axios.post(
-      "http://localhost:4000/contact",
-      formData,
+      "http://localhost:4000/contact/profil",
+      userData,
       config
     );
-    console.log(res);
+    setUserData(res.data);
   };
-  return <></>;
+  return (
+    <section className="main-section">
+      <form>
+        <Input
+          name="userLink"
+          className={"spn2"}
+          onChange={(e) => onChange(e)}
+        ></Input>
+        <Button onClick={(e) => onSubmit(e)}>Get Info</Button>
+      </form>
+      <div className="big-container">
+        <img src={userData.ProfilePic} />
+        <div>
+          <h1>{userData.name}</h1>
+          {userData.numberOfListings ? (
+            <h2>Listings: {userData.numberOfListings}</h2>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default UserInfo;

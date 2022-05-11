@@ -1,3 +1,6 @@
+.ant-form{
+  margin: 120px !important
+}
 .Card{
   height: 100%;
   width: 100%;
@@ -116,6 +119,7 @@
 
   }
   .col-signUp{
+    margin-top: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -155,6 +159,7 @@
   }
 }
 .signIn-form{
+  margin: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
