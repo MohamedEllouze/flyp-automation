@@ -12,8 +12,8 @@ function SignUp() {
     email: "",
     password: "",
     username: "",
-    gender: "",
-    country: "",
+    gender: 1,
+    country: 1,
   });
   const { firstName, lastName, email, username, password } = formData;
 
@@ -25,16 +25,10 @@ function SignUp() {
       "content-type": "application/json",
     },
   };
-  const onSubmit = async (e, location) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log("on submit", formData);
-    const res = await axios.post(
-      "http://localhost:4000/contact",
-      formData,
-      config
-    );
-    console.log(res);
-    console.log("location", location);
+    await axios.post("http://localhost:4000/contact", formData, config);
   };
   return (
     <Form
@@ -156,10 +150,10 @@ function SignUp() {
                       defaultValue={"Select Gender"}
                       onChange={(e) => onChange(e)}
                     >
-                      <option value="Select Gender">Select Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Unspecified">Unspecified</option>
+                      <option value={1}>Select Gender</option>
+                      <option value={2}>Male</option>
+                      <option value={3}>Female</option>
+                      <option value={4}>Unspecified</option>
                     </select>
                   </Form.Item>
                 </Col>
@@ -179,10 +173,10 @@ function SignUp() {
                       defaultValue={"United States"}
                       onChange={(e) => onChange(e)}
                     >
-                      <option value=" United States">United States</option>
-                      <option value=" Canada">Canada</option>
-                      <option value="Australia">Australia</option>
-                      <option value=" India">India</option>
+                      <option value={1}>United States</option>
+                      <option value={2}>Canada</option>
+                      <option value={3}>Australia</option>
+                      <option value={4}>India</option>
                     </select>
                   </Form.Item>
                 </Col>

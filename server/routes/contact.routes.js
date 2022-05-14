@@ -1,29 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const url = require("url");
 const Contact = require("../models/Contact.model");
 const puppeteer = require("puppeteer");
 
 router.post("/", async (req, res, next) => {
   try {
-    console.log(req.body);
-    contact = new Contact(req.body);
-    await contact.save();
-
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto("https://poshmark.com/signup");
 
-    await page.type("#firstName", contact.firstName);
-    await page.type("#lastName", contact.lastName);
-    await page.type("#email", contact.email);
-    await page.type("#password", contact.password);
-    await page.type("[name='userName']", contact.username);
-    await page.addStyleTag({ content: "#firstName{color: red}" });
-    const element = await page.$(".m--t--1");
-    let value = await page.evaluate((el) => el.textContent, element);
-    console.log("element", value);
-    res.json(contact);
+    await page.type("#firstName", req.body.firstName);
+    await page.type("#lastName", req.body.lastName);
+    await page.type("#email", req.body.email);
+    await page.type("#password", req.body.password);
+    await page.type("[name='userName']", req.body.username);
+    await page.click("[name='gender']");
+    await page.click(".dropdown__menu li:nth-child(" + req.body.gender + ")");
+    await page.click("[name='country']");
+    await page.click(
+      "[name='country'] .dropdown__menu li:nth-child(" + req.body.country + ")"
+    );
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");
