@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Contact = require("../models/Contact.model");
+const Contact = require("../models/contact.model.js");
 const puppeteer = require("puppeteer");
 
 router.post("/", async (req, res, next) => {
