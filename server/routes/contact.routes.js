@@ -55,4 +55,25 @@ router.route("/profil").post(async (req, res, next) => {
     res.status(500).send();
   }
 });
+router.route("/").get((req, res, next) => {
+  try {
+    Contact.find({}).exec(req.body, (error, data) => {
+      res.json(data);
+    });
+  } catch (e) {
+    res.status(500).send();
+  }
+});
+
+router.post("/add", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    let contact = new Contact(req.body);
+    await contact.save();
+    res.json(contact);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
 module.exports = router;
