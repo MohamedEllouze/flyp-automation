@@ -9,24 +9,15 @@ const contactSchema = new Schema({
   lastName: {
     type: String,
   },
-  email: {
+  toEat: {
     type: String,
   },
-  username: {
+  toDrink: {
     type: String,
   },
   date: {
     type: Date,
     default: Date.now,
-  },
-  gender: {
-    type: String,
-  },
-  country: {
-    type: String,
-  },
-  password: {
-    type: String,
   },
 });
 
